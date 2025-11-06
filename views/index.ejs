@@ -3,9 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= message %></title>
+  <title>Mozi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <h1><%= message %></h1>
+  <div class="container mt-5">
+  <h1>Foglalás mozi adatok</h1>
+  <form method="post" action="/jegy">
+
+    <div class="mb-3">
+      <label for="name">Név:</label>
+      <input type="text" id="name" name="name" value="<%= a.name ? a.name : '' %>">
+    </div>
+    <div class="mb-3">
+      <label for="email">Email cím:</label>
+      <input type="email" id="email" name="email" value="<%= a.email ? a.email : '' %>">
+    </div>
+    <div class="mb-3">
+      <label for="datum">Dátum:</label>
+      <input type="date" id="datum" name="date" value="<%= a.date ? a.date : '' %>">
+    </div>  
+    <div class="mb-3">
+      <label for="db">Jegyek száma:</label>
+      <input type="number" id="db" name="db" value="<%= a.db ? a.db : '' %>" min="1" max="10">
+    </div>
+    <div class="mb-3">
+      <button type="submit">Foglalás</button>
+    </div>
+     <% if (errors && errors.length) { %>
+    <div style="color: red;" class="alert alert-danger mt-3">
+            <ul class="mb-0">
+                <% if (errors && errors.length) { %>
+                    <% errors.forEach(error => { %>
+                        <li><%= error %></li>
+                    <% }) %>
+                <% } %>
+            </ul>
+        </div>
+    <% } %>
+  </form>
+  </div>
 </body>
 </html>
